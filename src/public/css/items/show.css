@@ -1,0 +1,105 @@
+.card {
+    max-width: 100%;
+}
+
+.card__inner {
+    display: flex;
+    gap: 80px;
+    margin-top: 200px;
+}
+
+.card__left {
+    flex: 1;
+    margin-left: 100px;
+}
+
+.card__left img {
+    width: 100%;
+}
+
+.card__right {
+    flex: 1;
+}
+
+article {
+    margin-bottom: 20px;
+}
+
+.item-detail__title {
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.item-detail__summary {
+    margin-bottom: 20px;
+}
+
+.item-detail__name {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.item-detail__brand {
+    margin-top: 0;
+    font-size: 14px;
+}
+
+.price {
+    font-size: 25px;
+}
+
+.item-detail__evaluation {
+    display: flex;
+}
+
+.item-detail__purchase, .comments__form-submit {
+    width: 90%;
+    border-radius: 3px;
+    background-color: orangered;
+    padding: 5px 30px;
+    color: #fff;
+    font-size: 20px;
+    border: none;
+}
+
+.category {
+    margin-bottom: 0px;
+}
+
+.category li {
+    display: inline-block;
+}
+
+li {
+    list-style: none;
+}
+
+.condition {
+    display:flex;
+    gap: 4px;
+}
+
+.comments__title {
+    margin: 0px;
+    display: inline-block;
+    color: #555;
+}
+
+.comments__user { 
+    display: flex;
+}
+
+.comments__title span {
+    color: #555;
+}
+
+.comments__form-title {
+    font-weight: bold;
+}
+
+textarea {
+    width: 90%;
+    margin-bottom: 20px;
+    border-radius: 3px;
+}

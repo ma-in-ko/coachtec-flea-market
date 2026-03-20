@@ -8,9 +8,9 @@ use App\Models\User;
 
 class MypageController extends Controller
 {
-    public function show()
+    public function index()
     {
-        return view('mypage.show');
+        return view('mypage.index');
     }
 
     /*編集・更新*/

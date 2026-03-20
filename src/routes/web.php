@@ -38,7 +38,7 @@ Route::post('/logout', [AuthController::class, 'logout']);
 
 
 /*認証機能必須*/
-Route::middleware('auth')->group(function() {
+/*Route::middleware('auth')->group(function() {
     /*出品*/
     Route::get('/sell', [ItemController::class, 'create']);
     Route::post('/sell',[ItemController::class, 'store']);
@@ -63,9 +63,17 @@ Route::middleware('auth')->group(function() {
 
     /*マイページ関連*/
     /*プロフィール画面*/
-    Route::get('/mypage', [MypageController::class, 'show']);
+    Route::get('/mypage', [MypageController::class, 'index']);
     /*変更*/
     Route::get('/mypage/profile', [MypageController::class, 'edit']);
     Route::post('/mypage/profile', [MypageController::class, 'update']);
 
-}
+    Route::get('/verify-test', function() {
+        return view('auth.verify-email');
+    });
+
+    Route::get('/mypage/form', function() {
+        return view('mypage._form');
+    });
+
+    /*閉じかっこ忘れない*/

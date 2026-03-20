@@ -1,0 +1,99 @@
+.card {
+    max-width: 100%;
+}
+
+.card__inner {
+    display: flex;
+    gap: 40px;
+    margin: 40px 80px;
+}
+
+.card__left {
+    flex: 2;
+}
+
+.card__left img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.purchase-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #999;
+}
+
+.purchase__group {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #999;
+}
+
+.purchase__label {
+    display: block;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.purchase__payment-method {
+    width: 45%;
+    height: 30px;
+    margin-left: 50px;
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+
+.shipping-address {
+    display: flex;
+    justify-content: space-between;
+}
+
+.shipping-address__change {
+    color: #00bfff;
+}
+
+li {
+    list-style: none;
+}
+
+.card__right {
+    flex: 1;
+}
+
+.purchase-summary {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+
+.purchase-summary th, .purchase-summary td {
+    padding: 20px;
+}
+
+.purchase-summary th {
+    text-align: left;
+}
+
+.purchase-summary td {
+    text-align: right;
+}
+
+.purchase-summary__price {
+    border-bottom: 1px solid #999;;
+}
+
+.purchase-summary__action {
+    width: 100%;
+    padding: 8px 0;
+    border: none;
+    border-radius: 3px;
+    background-color: orangered;
+    color: #fff;
+    font-weight: bold;
+}
