@@ -55,7 +55,7 @@ Route::post('/logout', [AuthController::class, 'logout']);
 
     /*購入関連*/
     /*購入*/
-    Route::get('/purchase/{item}', [PurchaseController::class, 'create']);
+    Route::get('/purchase/{item}', [PurchaseController::class, 'create'])->name('purchase.create');
     Route::post('/purchase/{item}', [PurchaseController::class, 'store']);
     /*配送先変更*/
     Route::get('/purchase/address/{item}', [PurchaseController::class, 'edit']);

@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>COACHTECH</title>
     <link rel="stylesheet" href="https://unpkg.com/sanitize.css">
-    <link rel="stylesheet" href="{{ asset('css/common.css') }}">
+    <!--<link rel="stylesheet" href="{{ asset('css/common.css') }}"> -->
     <link rel="stylesheet" href="{{ asset('css/layouts/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/components.css') }}">
     @yield('css')
 </head>
 <body>
@@ -16,7 +17,7 @@
             <div class="header__logo-wrapper">
                 <div class="header__logo">
                     <a href="/">
-                        <img src="{{ asset('images/COACHTECHヘッダーロゴ.png') }}" alt="logo">
+                        <img src="{{ asset('images/COACHTECH-header_logo.png') }}" alt="logo">
                     </a>
                 </div>
             </div>

@@ -7,60 +7,61 @@
 @section('main')
     <div class="card">
         <div class="card__inner">
-            <article class="card__left">
-                <img src="#" alt="商品画像">
-            </article>
-            <article class="card__right">
+            <section class="card__left">
+                <img src="{{ $item->image }}" alt="商品画像">
+            </section>
+            <section class="card__right">
                 <div class="card__content">
 
                     <!--  商品概要 -->
-                    <section class="item-detail__summary">
+                    <article class="item-detail__summary">
                         <div class="item-detail__name">
-                            商品名
+                            {{ $item->name }}
                         </div>
 
                         <div class="item-detail__brand">
-                            <p>ブランド名</p>
+                            <p>{{ $item->brand }}</p>
                         </div>
 
                         <div class="item-detail__price">
-                            <span>￥</span> <span class="price">47,000</span> (税込み)
+                            <span>￥</span> <span class="price">{{ number_format($item->price) }}</span> (税込)
                         </div>
 
                         <div class="item-detail__evaluation">
                             <div class="item-detail__likes">
-                                <p class="icon">お気に入りアイコン</p>
+                                <img class="icon" src="{{ asset('images/heart-default.png') }}" alt="いいねアイコン">
                                 <p class="item-detail__likes-count">
-                                    お気に入り数
+                                    {{ $item->likes_count }}
                                 </p>
                             </div>
                             <div class="item-detail__comment">
-                                <p class="icon">吹き出しアイコン</p>
-                                <p class="item-detail__comment-count">コメント数</p>
+                                <img class="icon" src="{{ asset('images/comment-icon.png') }}" alt="コメントアイコン">
+                                <p class="item-detail__comment-count">
+                                    {{ $item->comments_count }}
+                                </p>
                             </div>
                         </div>
 
-                        <button class="item-detail__purchase">
+                        <a href="{{ route('purchase.create', $item->id) }}">
+                            <x-button class="item-detail__purchase" type="button">
                             購入手続きへ
-                        </button>
-                    </section>
+                            </x-button>
+                        </a>
+                    </article>
 
                     <!--  商品説明  -->
-                    <section class="item-detail__desc">
+                    <article class="item-detail__desc">
                         <div class="item-detail__title">
                             商品説明
                         </div>
 
                         <div class="item-detail__desc-body">
-                            カラー：グレー<br><br>
-                            新品<br>
-                            商品の状態は良好です。傷もありません。<br><br>
-                            購入後、即発送いたします。
+                            {{ $item->description }}
                         </div>
-                    </section>
+                    </article>
 
                     <!-- 商品情報  -->
-                    <section class="item-detail__info">
+                    <article class="item-detail__info">
                         <div class="item-detail__title">
                             商品の情報
                         </div>
@@ -69,50 +70,51 @@
                             <tr>
                                 <th class="category">カテゴリー</th>
                                 <td>
-                                    <span>洋服</span>
-                                    <span>メンズ</span>
+                                    @foreach($item->categories as $category)
+                                        <span class="badge">{{ $category->name }}</span>
+                                    @endforeach
                                 </td>
                             </tr>
                             <tr>
                                 <th class="condition">商品の状態</th>
-                                <td>良好</td>
+                                <td>{{ $item->condition }}</td>
                             </tr>
                         </table>
-                    </section>
+                    </article>
 
                     <!--  コメント  -->
-                    <section class="item-detail__comments comments">
+                    <article class="item-detail__comments comments">
                         <div class="item-detail__title comments__title">
                             コメント
                         </div>
-                        <span>（1）</span>
+                        <span>({{ $item->comments_count }})</span>
 
                         <ul class="comments__list">
+                            @foreach($item->comments as $comment)
                             <li class="comments__item">
                                 <div class="comments__user">
                                     <img class="comments__avatar" src="#" alt="user-image">
                                     <p class="comments__name">user_name</p>
                                 </div>
-                                <p class="comment__text">コメント文
-                                </p>
+                                <p class="comment__text">{{ $comment->comment }}</p>
                             </li>
+                        @endforeach
                         </ul>
 
                         <div class="comments__form">
                             <div class="comments__form-title">商品へのコメント</div>
                             <form class="comments__form-text" action="#" method="post">
                                 @csrf
-                                <textarea name="textarea" cols="30" rows="10">
-                                </textarea>
-                                <button  class="comments__form-submit" type="submit" >
+                                <textarea name="comment" rows="5"></textarea>
+                                <x-button  class="comments__form-submit" type="submit" >
                                     コメントを送信する
-                                </button>
+                                </x-button>
                             </form>
                         </div>
-                    </section>
+                    </article>
 
                 </div>
-            </article>
+            </section>
         </div>
     </div>
 @endsection

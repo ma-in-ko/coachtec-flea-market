@@ -8,6 +8,7 @@ use App\Models\Profile;
 use App\Models\Purchase;
 use App\Models\Like;
 use App\Models\Comment;
+use App\Models\User;
 
 
 class ItemController extends Controller
@@ -15,13 +16,18 @@ class ItemController extends Controller
     /*商品一覧トップ画面*/
     public function index()
     {
-        return view('items.index');
+        $items = Item::latest()->get();
+
+        return view('items.index',compact('items'));
     }
 
     /*詳細画面*/
     public function show(Item $item)
     {
-        return view('items.show');
+        $item->load(['categories', 'comments.user']);
+        $item->loadCount(['likes','comments']);
+
+        return view('items.show', compact('item'));
     }
 
     /*出品画面*/
