@@ -45,7 +45,8 @@ docker compose up -d --build
 docker compose exec php bash  
 composer install  
 cp .env.example .env  
-php artisan key:generate  
+php artisan key:generate
+php artisan storage:link
 ```
 
 ### データベース
