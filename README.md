@@ -8,13 +8,15 @@
 
 ## 機能一覧  
 * 会員登録
-* ログイン
+* ログイン/ログアウト
 * 商品出品
 * 商品一覧表示
 * 商品詳細表示
 * コメント
 * いいね
 * 商品購入
+* Stripeによる決済機能
+* ハイ移送先変更機能
 * マイページ
 * プロフィール編集
 
@@ -24,24 +26,47 @@
 * Docker
 * Blade
 
-## 環境構築  
-git clone  
-docker compose up -d  
+## 環境構築 
+
+### Dockerビルド
+
+git clone (https://github.com/ma-in-ko/coachtec-flea-market.git)
+cd coachtec-flea-marcket
+docker compose up -d --build
+
+### Laravelセットアップ
 docker compose exec php bash  
 composer install  
 cp .env.example .env  
 php artisan key:generate  
+
+### データベース
+
 php artisan migrate  
 
-### URL  
+## Stripe設定
+.envファイルに以下を設定してください。
+
+STRIPE_KEY=公開鍵
+STRIPE_SECRET=シークレットキー
+
+Stripeのテストモードを使用しています。
+
+テストカード番号
+4242　4242　4242　4242
+
+
+有効期限：任意の未来日
+ＣＶＣ：任意の3桁
 
 ## URL  
-環境開発  
-http://localhost  
-
-phpMyAddmin  
-http://localhost:8080  
+*環境開発  
+ http://localhost  
+*phpMyAddmin  
+ http://localhost:8080  
 
 ## ER図  
+![ER図](docs/er.png)
 
-  
+##作成者
+
