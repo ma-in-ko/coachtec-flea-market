@@ -20,31 +20,42 @@
 * マイページ
 * プロフィール編集
 
-## 使用技術  
-* Laravel  
+## 使用技術 
+* PHP 8.1.34
+* Laravel 8.83.29
 * MySQL
 * Docker
 * Blade
+* Laravel Fortify(認証機能)
+* Stripe(決済)
 
 ## 環境構築 
 
 ### Dockerビルド
 
-git clone (https://github.com/ma-in-ko/coachtec-flea-market.git)
+```
+git clone https://github.com/ma-in-ko/coachtec-flea-market.git
 cd coachtec-flea-marcket
 docker compose up -d --build
+```
 
 ### Laravelセットアップ
+
+```
 docker compose exec php bash  
 composer install  
 cp .env.example .env  
 php artisan key:generate  
+```
 
 ### データベース
 
+```
 php artisan migrate  
+```
 
 ## Stripe設定
+
 .envファイルに以下を設定してください。
 
 STRIPE_KEY=公開鍵
@@ -54,7 +65,6 @@ Stripeのテストモードを使用しています。
 
 テストカード番号
 4242　4242　4242　4242
-
 
 有効期限：任意の未来日
 ＣＶＣ：任意の3桁
@@ -68,5 +78,5 @@ Stripeのテストモードを使用しています。
 ## ER図  
 ![ER図](docs/er.png)
 
-##作成者
+## 作成者
 
