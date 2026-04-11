@@ -59,7 +59,7 @@ php artisan migrate
 本アプリではユーザー認証機能委としてLaravle Fortifyを使用しています。
 
 ### 実装内容
-　* 会員登録
+  * 会員登録
   * ログイン
   * ログアウト
 
