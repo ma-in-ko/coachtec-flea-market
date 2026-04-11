@@ -44,6 +44,10 @@ body {
     font-size: 18px;
 }
 
+.header__nav form {
+    margin: 0;
+}
+
 .header__nav-wrapper {
     display: flex;
     align-items: center;
@@ -63,4 +67,12 @@ body {
     color: #fff;
     font-size: 16px;
     white-space: nowrap;
+}
+
+.header__logout {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
 }

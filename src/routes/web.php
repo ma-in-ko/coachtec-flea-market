@@ -7,6 +7,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,19 +27,19 @@ Route::get('/', [ItemController::class, 'index']);
 Route::get('/item/{item}', [ItemController::class, 'show']);
 
 
-/*会員関連*/
-/*登録*/
-Route::get('/register', [AuthController::class, 'create']);
-Route::post('/register', [AuthController::class, 'register']);
+//会員関連
+//登録
+//Route::get('/register', [AuthController::class, 'create']);
+//Route::post('/register', [AuthController::class, 'register']);
 /*ログイン*/
-Route::get('/login', [AuthController::class, 'showLogin']);
-Route::post('/login', [AuthController::class, 'login']);
+//Route::get('/login', [AuthController::class, 'showLogin']);
+//Route::post('/login', [AuthController::class, 'login'])->name('login');
 /*ログアウト*/
-Route::post('/logout', [AuthController::class, 'logout']);
+//Route::post('/logout', [AuthController::class, 'logout']);
 
 
 /*認証機能必須*/
-/*Route::middleware('auth')->group(function() {
+Route::middleware('auth')->group(function() {
     /*出品*/
     Route::get('/sell', [ItemController::class, 'create']);
     Route::post('/sell',[ItemController::class, 'store']);
@@ -50,16 +51,24 @@ Route::post('/logout', [AuthController::class, 'logout']);
     /*いいね関連*/
     /*追加*/
     Route::post('/item/{item}/like', [LikeController::class, 'store']);
+
     /*解除*/
     Route::delete('/item/{item}/like', [LikeController::class, 'destroy']);
 
     /*購入関連*/
     /*購入*/
     Route::get('/purchase/{item}', [PurchaseController::class, 'create'])->name('purchase.create');
-    Route::post('/purchase/{item}', [PurchaseController::class, 'store']);
+
+    /*支払い方法*/
+    Route::post('purchase/payment/{item}', [PurchaseController::class, 'payment'])->name('purchase.payment');
+
     /*配送先変更*/
-    Route::get('/purchase/address/{item}', [PurchaseController::class, 'edit']);
-    Route::post('/purchase/address/{item}', [PurchaseController::class, 'update']);
+    Route::get('/purchase/address/{item}', [PurchaseController::class, 'edit'])->name('purchase.address.edit');
+    Route::post('/purchase/address/{item}', [PurchaseController::class, 'update'])->name('purchase.address.update');
+
+    /*購入確定*/
+    Route::post('/purchase/{item}', [PurchaseController::class, 'store'])->name('purchase.store');
+
 
     /*マイページ関連*/
     /*プロフィール画面*/
@@ -75,5 +84,4 @@ Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/mypage/form', function() {
         return view('mypage._form');
     });
-
-    /*閉じかっこ忘れない*/
+});

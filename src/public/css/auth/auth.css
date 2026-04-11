@@ -52,6 +52,10 @@
     color: #fff;
 }
 
+.error-message {
+    color: #ff0000;
+}
+
 .member-register,
 .member-login,
 .verify-email__resend {

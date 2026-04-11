@@ -5,6 +5,8 @@
 @endsection
 
 @section('main')
+
+
 <div class="main__inner">
 
     <div class="top__menu">

@@ -33,7 +33,12 @@
             <div class="header__nav-wrapper">
                 <nav class="header__nav">
                     <ul>
-                        <li><a href="/logout">ログアウト</a></li>
+                        <li>
+                            <form action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <button type="submit" class="header__logout">ログアウト</button>
+                            </form>
+                        </li>
                         <li><a href="#">マイページ</a></li>
                         <li><a href="#">出品</a></li>
                     </ul>

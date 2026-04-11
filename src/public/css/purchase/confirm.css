@@ -27,6 +27,16 @@
     border-bottom: 1px solid #999;
 }
 
+.purchase-item img {
+    width: 50%;
+    height: auto;
+}
+
+.purchase__name {
+    font-weight: bold;
+    font-size: 20px;
+}
+
 .purchase__group {
     margin-top: 20px;
     margin-bottom: 20px;

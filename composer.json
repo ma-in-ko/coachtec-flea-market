@@ -1,0 +1,6 @@
+{
+    "require": {
+        "stripe/stripe-php": "^20.0",
+        "laravel/fortify": "^1.7"
+    }
+}

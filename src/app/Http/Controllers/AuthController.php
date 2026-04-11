@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Http\Requests\LoginRequest;
+use App\Http\Reuqests\RegisterRequest;
+use App\Actions\Fortify\CreateNewUser;
 
 class AuthController extends Controller
 {
@@ -16,18 +19,29 @@ class AuthController extends Controller
 
     public function store(Request $request)
     {
+        $createNewUser->crate($request->validated());
+
         return redirect('/');
     }
 
     /*ログイン*/
-    public function showLogin()
+    /*public function showLogin()
     {
         return view('auth.login');
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
-        return redirect('/');
+        $credentials = $request->only('email', 'password');
+
+        if(Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect('/');
+
+            return back()->withErrors([
+                'email' => 'ログイン情報が登録されていません',
+            ]);
+        }
     }
 
     /*ログアウト*/
