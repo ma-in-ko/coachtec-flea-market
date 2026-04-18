@@ -88,10 +88,15 @@ display: block;
 width: 100%;
 border: 1px solid #888;
 border-radius: 3px;
+padding-left: 10px;
 }
 
 .sell-form__input {
-    height: 30px;
+    height: 40px;
+}
+
+.sell-form__textarea {
+    padding-top: 10px;
 }
 
 .price-input {
@@ -101,7 +106,7 @@ border-radius: 3px;
 .sell-form__price-mark {
     position: absolute;
     left: 10px;
-    top: 50%;
+    top: 20px;
     transform: translateY(-50%);
 }
 
@@ -120,3 +125,8 @@ border-radius: 3px;
     color: #fff;
 }
 
+.error-message {
+    color: red;
+    margin-top: 4px;
+    min-height: 16px;
+}

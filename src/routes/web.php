@@ -40,9 +40,10 @@ Route::get('/item/{item}', [ItemController::class, 'show']);
 
 /*認証機能必須*/
 Route::middleware('auth')->group(function() {
+
     /*出品*/
     Route::get('/sell', [ItemController::class, 'create']);
-    Route::post('/sell',[ItemController::class, 'store']);
+    Route::post('/sell',[ItemController::class, 'store'])->name('sell.store');
 
     /*コメント関連*/
     /*投稿*/
@@ -72,10 +73,10 @@ Route::middleware('auth')->group(function() {
 
     /*マイページ関連*/
     /*プロフィール画面*/
-    Route::get('/mypage', [MypageController::class, 'index']);
+    Route::get('/mypage', [MypageController::class, 'index'])->name('mypage');
     /*変更*/
-    Route::get('/mypage/profile', [MypageController::class, 'edit']);
-    Route::post('/mypage/profile', [MypageController::class, 'update']);
+    Route::get('/mypage/profile', [MypageController::class, 'edit'])->name('profile.edit');
+    Route::put('/mypage/profile', [MypageController::class, 'update'])->name('profile.update');
 
     Route::get('/verify-test', function() {
         return view('auth.verify-email');

@@ -7,78 +7,36 @@
 @section('main')
     <div class="main__inner">
 
-    <div class="user-profile">
-        <img src="#" class="user-profile__image" alt="ユーザー画像">
-        <div class="user-profile__info">
-            <p class="user-profile__name">ユーザー名</p>
+        <div class="user-profile">
+            <div class="user-profile__image-wrapper">
+                <img src="{{ $profile && $profile->image ? asset('storage/' . $profile->image) : asset('images/default.png') }}"
+                class="user-profile__image" alt="ユーザー画像">
+            </div>
+            <div class="user-profile__info">
+                <p class="user-profile__name">{{ $user->name }}</p>
+            </div>
+            <a href="{{ route('profile.edit') }}" class="user-profile__edit">
+            プロフィールを編集
+            </a>
         </div>
-        <button class="user-profile__edit">プロフィールを編集</button>
     </div>
 
     <div class="top__menu">
-        <a class="menu__sell-list" href="#">出品した商品</a>
-        <a class="menu__buy-list" href="#">購入した商品</a>
+        <a href="{{ route('mypage', ['page' => 'sell']) }}"
+            class="menu__sell-list {{ $page !== 'buy' ? 'active' : '' }}">
+            出品した商品
+        </a>
+        <a href="{{ route('mypage', ['page' => 'buy']) }}"
+            class="menu__buy-list {{ $page === 'buy' ? 'active' : '' }}">
+            購入した商品
+        </a>
     </div>
 
     <div class="exhibition">
         <ul class="item__list">
-
-            <li class="item">
-                <div class="item__image-wrapper">
-                    <img class="item__image" src="" alt="商品画像">
-                    <span class="item__sold">SOLD</span>
-                </div>
-                <p class="item__name">商品名</p>
-            </li>
-
-            <li class="item">
-                <div class="item__image-wrapper">
-                    <img class="item__image" src="" alt="商品画像">
-                    <span class="item__sold">SOLD</span>
-                </div>
-                <p class="item__name">商品名</p>
-            </li>
-
-            <li class="item">
-                <div class="item__image-wrapper">
-                    <img class="item__image" src="" alt="商品画像">
-                    <span class="item__sold">SOLD</span>
-                </div>
-                <p class="item__name">商品名</p>
-            </li>
-
-            <li class="item">
-                <div class="item__image-wrapper">
-                    <img class="item__image" src="" alt="商品画像">
-                    <span class="item__sold">SOLD</span>
-                </div>
-                <p class="item__name">商品名</p>
-            </li>
-
-            <li class="item">
-                <div class="item__image-wrapper">
-                    <img class="item__image" src="" alt="商品画像">
-                    <span class="item__sold">SOLD</span>
-                </div>
-                <p class="item__name">商品名</p>
-            </li>
-
-            <li class="item">
-                <div class="item__image-wrapper">
-                    <img class="item__image" src="" alt="商品画像">
-                    <span class="item__sold">SOLD</span>
-                </div>
-                <p class="item__name">商品名</p>
-            </li>
-
-            <li class="item">
-                <div class="item__image-wrapper">
-                    <img class="item__image" src="" alt="商品画像">
-                    <span class="item__sold">SOLD</span>
-                </div>
-                <p class="item__name">商品名</p>
-            </li>
-
+            @foreach($items as $item)
+                <x-item-card :item="$item" />
+            @endforeach
         </ul>
     </div>
 

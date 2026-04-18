@@ -2,17 +2,14 @@
 
 namespace App\Providers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Cache\RateLimiting\Limit;
 
-
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Contracts\LogoutResponse;
+use Laravel\Fortify\Actions\AttemptToAuthenticate;
 
 use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
@@ -58,24 +55,21 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.register');
         });
 
+        //ログインバリデーション
+        Fortify::authenticateThrough(function () {
+            return [
+                function ($request, $next) {
 
-        // ログイン処理
-        Fortify::authenticateUsing(function (Request $request) {
+                    validator($request->all(), [
+                        'email' => ['required', 'email'],
+                        'password'=> ['required'],
+                    ])->validate();
 
-            // FormRequestバリデーション
-            app(\App\Http\Requests\LoginRequest::class)->validateResolved();
+                return $next($request);
+                },
 
-            // ユーザー取得
-            $user = User::where('email', $request->email)->first();
-
-            // 認証チェック
-            if (! $user || ! Hash::check($request->password, $user->password)) {
-                throw ValidationException::withMessages([
-                    'email' => ['ログイン情報が登録されていません'],
-                ]);
-            }
-
-            return $user;
+                AttemptToAuthenticate::class,
+            ];
         });
 
         // ログイン試行制限（なし）

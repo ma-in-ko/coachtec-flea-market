@@ -9,6 +9,7 @@ use App\Models\Purchase;
 use App\Models\Like;
 use App\Models\Comment;
 use App\Models\User;
+use App\Http\Requests\ExhibitionRequest;
 
 
 class ItemController extends Controller
@@ -37,8 +38,25 @@ class ItemController extends Controller
     }
 
     /*出品処理*/
-    public function store(Request $request)
+    public function store(ExhibitionRequest $request)
     {
+        //画像保存
+        $path = $request->file('image')->store('items','public');
+
+        //商品作成
+        $item = Item::create([
+            'name' => $request->name,
+            'brand' => $request->brand,
+            'condition' => $request->condition,
+            'description' => $request->description,
+            'price' => $request->price,
+            'image' => $path,
+            'user_id' => auth()->id(),
+        ]);
+
+        //カテゴリー紐づけ
+        $item->categories()->sync($request->categories);
+
         return redirect('/');
     }
 }
