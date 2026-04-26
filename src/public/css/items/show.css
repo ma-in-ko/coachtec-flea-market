@@ -100,14 +100,29 @@ article {
     gap: 4px;
 }
 
+.comments__user {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2px;
+}
+
+.comments__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.comments__text {
+    margin: 0;
+    line-height: 1.4;
+}
+
 .comments__title {
     margin: 0px;
     display: inline-block;
     color: #555;
-}
-
-.comments__user { 
-    display: flex;
 }
 
 .comments__title span {
@@ -126,5 +141,47 @@ textarea {
     resize: vertical;
     width: 90%;
     height: 15vh;
-    margin-bottom: 30px;
+}
+
+.comments__form-submit {
+    margin-top: 30px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a.btn {
+    display: inline-block;
+    width: 90%;
+    text-align: center;
+    border-radius: 3px;
+    background-color: orangered;
+    padding: 5px 30px;
+    color: #fff;
+    font-size: 20px;
+    border: none;
+
+}
+
+.sold-text {
+    display: inline-block;
+    width: 90%;
+    text-align: center;
+    padding: 10px 0;
+    background-color: #ccc;
+    color: #666;
+    border-radius: 5px;
+}
+
+.link-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.error-message {
+    margin: 2px 0 0;
+    color: red;
 }

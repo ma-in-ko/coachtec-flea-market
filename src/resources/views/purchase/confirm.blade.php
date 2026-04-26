@@ -42,7 +42,7 @@
                         </div>
                         <ul class="purchase__shipping-address">
                             <li class="postcode">
-                                <span>{{ session('postal_code') ??'〒000-0000' }}
+                                <span>{{ session('postal_code') }}
                                 </span>
                             </li>
                             <li class="address">
@@ -63,13 +63,20 @@
                     <tr class="purchase-summary__payment-method">
                         <th>支払い方法</th>
                         <td>
-                            {{ session('payment_method') == 2 ? 'カード支払い' :'コンビニ支払い' }}
+                            {{ old('payment_method', session('payment_method', 1)) == 2 ? 'カード支払い' :'コンビニ支払い' }}
+                                @error('payment_method')
+                                    <p class="error-message">{{ $message }}</p>
+                                @enderror
                         </td>
                     </tr>
                 </table>
                 <form action="{{ route('purchase.store', $item->id) }}" class="purchase-form__submit" method="post">
                     @csrf
-                    <input type="hidden" name="payment_method" value="{{ session('payment_method') }}">
+                    {{-- <select name="payment_method">
+                        <option value="1" {{ old('payment_method', session('payment_method', 1)) == 1 ? 'selected' : '' }}>コンビニ支払い</option>
+                        <option value="2" {{old('payment_method', session('payment_method', 2)) == ? 'selected' : '' }}>カード支払い</option>
+                    </select> --}}
+                    <input type="hidden" name="payment_method" value="{{ old('payment_method', session('payment_method', 1)) }}">
                     <button type="submit" class="purchase-summary__action">
                         購入する
                     </button>

@@ -9,7 +9,7 @@
                 <img class="item__image" src="{{ asset('storage/' . $item->image) }}" alt="商品画像">
             @endif
 
-            @if($item->is_sold ?? false)
+            @if($item->purchase)
                 <span class="item__sold">SOLD</span>
             @endif
         </div>

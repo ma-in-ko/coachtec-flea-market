@@ -9,11 +9,19 @@ class LikeController extends Controller
 {
     public function store(Item $item)
     {
-        return redirect('/item/' .$item->id);
+            Like::firstOrCreate([
+            'user_id' => auth()->id(),
+            'item_id' => $item->id,
+            ]);
+        return back();
     }
 
     public function destroy(Item $item)
     {
-        return redirect('/item/' .$item->id);
+        Like::where('user_id', auth()->id())
+            ->where('item_id', $item->id)
+            ->delete();
+
+        return back();
     }
 }

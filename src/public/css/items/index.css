@@ -45,6 +45,21 @@
     margin: 0;
 }
 
+.item__image-wrapper {
+    position: relative;
+}
+
 .item__image {
     width: 100%;
+}
+
+.item__sold {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: red;
+    color: #fff;
+    font-size: 12px;
+    padding: 8px 8px;
+    border-radius: 3px;
 }

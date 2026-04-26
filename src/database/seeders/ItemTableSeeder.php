@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\User; 
 
 class ItemTableSeeder extends Seeder
 {
@@ -14,10 +15,12 @@ class ItemTableSeeder extends Seeder
      */
     public function run()
     {
+        $userIds = User::pluck('id')->toArray();
+
         DB::table('items')->insert([
 
-            $items = [
-                'user_id' => 1,
+            [
+                'user_id' => $userIds[array_rand($userIds)],
                 'name' => '腕時計',
                 'price' => 15000,
                 'brand' => 'Rolax',
@@ -28,8 +31,8 @@ class ItemTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
 
-            $items = [
-                'user_id' => 1,
+            [
+                'user_id' => $userIds[array_rand($userIds)],
                 'name' =>'HDD',
                 'price' => 5000,
                 'brand' => '西芝',
@@ -40,8 +43,8 @@ class ItemTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
 
-                    $items = [
-                'user_id' => 1,
+            [
+                'user_id' => $userIds[array_rand($userIds)],
                 'name' =>'玉ねぎ3束',
                 'price' => 300,
                 'brand' => 'なし',
@@ -52,8 +55,8 @@ class ItemTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
 
-            $items = [
-                'user_id' => 1,
+            [
+                'user_id' => $userIds[array_rand($userIds)],
                 'name' =>'革靴',
                 'price' => 4000,
                 'brand' => '',
@@ -64,11 +67,11 @@ class ItemTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
 
-            $items = [
-                'user_id' => 1,
+            [
+                'user_id' => $userIds[array_rand($userIds)],
                 'name' =>'ノートPC',
                 'price' => 45000,
-                'brand' => '',
+                'brand' => 'null',
                 'description' =>'高性能なノートPC',
                 'condition' => '良好',
                 'image' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Living+Room+Laptop.jpg',
@@ -76,8 +79,8 @@ class ItemTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
 
-            $items = [
-                'user_id' => 1,
+            [
+                'user_id' => $userIds[array_rand($userIds)],
                 'name' =>'マイク',
                 'price' => 8000 ,
                 'brand' => 'なし',
@@ -88,8 +91,8 @@ class ItemTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
 
-            $items = [
-                'user_id' => 1,
+            [
+                'user_id' => $userIds[array_rand($userIds)],
                 'name' =>'ショルダーバッグ',
                 'price' => 3500,
                 'brand' => '',
@@ -100,10 +103,10 @@ class ItemTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
 
-            $items = [
-                'user_id' => 1,
+            [
+                'user_id' => $userIds[array_rand($userIds)],
                 'name' =>'タンブラー',
-                'price' => 3500,
+                'price' => 500,
                 'brand' => 'なし',
                 'description' =>'使いやすいタンブラー',
                 'condition' => '状態が悪い',
@@ -112,8 +115,8 @@ class ItemTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
 
-            $items = [
-                'user_id' => 1,
+            [
+                'user_id' => $userIds[array_rand($userIds)],
                 'name' =>'コーヒーミル',
                 'price' => 4000,
                 'brand' => 'starbacks',
@@ -124,8 +127,8 @@ class ItemTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
 
-            $items = [
-                'user_id' => 1,
+            [
+                'user_id' => $userIds[array_rand($userIds)],
                 'name' =>'メイクセット',
                 'price' => 2500,
                 'brand' => '',

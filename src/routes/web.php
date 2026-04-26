@@ -65,11 +65,13 @@ Route::middleware('auth')->group(function() {
 
     /*配送先変更*/
     Route::get('/purchase/address/{item}', [PurchaseController::class, 'edit'])->name('purchase.address.edit');
-    Route::post('/purchase/address/{item}', [PurchaseController::class, 'update'])->name('purchase.address.update');
+    Route::put('/purchase/address/{item}', [PurchaseController::class, 'update'])->name('purchase.address.update');
 
-    /*購入確定*/
+    /*購入確定（コンビニ）*/
     Route::post('/purchase/{item}', [PurchaseController::class, 'store'])->name('purchase.store');
 
+    /*購入確定（カード）*/
+    Route::get('/purchase/success/{item}', [PurchaseController::class,'success'])->name('purchase.success');
 
     /*マイページ関連*/
     /*プロフィール画面*/

@@ -6,8 +6,9 @@
 
 @section('main')
         <section class="card">
-        <form action="#" class="address-edit" method="post">
+        <form action="{{ route('purchase.address.update', $item->id) }}" class="address-edit" method="POST">
         @csrf
+        @method('PUT')
 
             <h2 class="address-edit__title">
                 住所の変更
@@ -15,7 +16,7 @@
 
              <div class="address-edit__group">
                 <label for="postcode" class="address-edit__label">郵便番号</label>
-                <input type="text" name="postcode" class="address-edit__input">
+                <input type="text" name="postal_code" class="address-edit__input">
             </div>
             <div class="address-edit__group">
                 <label for="address" class="address-edit__label">住所</label>

@@ -39,7 +39,7 @@
                                 <button type="submit" class="header__logout">ログアウト</button>
                             </form>
                         </li>
-                        <li><a href="#">マイページ</a></li>
+                        <li><a href="{{ route('mypage') }}">マイページ</a></li>
                         <li><a href="#">出品</a></li>
                     </ul>
                 </nav>

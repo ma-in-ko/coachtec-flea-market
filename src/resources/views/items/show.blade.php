@@ -28,12 +28,33 @@
                         </div>
 
                         <div class="item-detail__evaluation">
+                            @php
+                                $liked = $item->likes->where('user_id', auth()->id())->count();
+                            @endphp
                             <div class="item-detail__likes">
-                                <img class="icon" src="{{ asset('images/heart-default.png') }}" alt="いいねアイコン">
-                                <p class="item-detail__likes-count">
+                                @if($liked)
+                                    <form action="/item/{{ $item->id }}/like" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="link-btn">
+                                            <img class="icon" src="{{ asset('images/heart-pink.png') }}" alt="いいねアイコン">
+                                        </button>
+                                    </form>
+                                @else
+
+                                    <form action="/item/{{ $item->id }}/like" method="POST">
+                                        @csrf
+                                        <button type="submit" class="link-btn">
+                                            <img class="icon" src="{{ asset('images/heart-default.png') }}" alt="いいね">
+                                        </button>
+                                    </form>
+                                @endif
+
+                                <p  class="item-detail__likes-count">
                                     {{ $item->likes_count }}
                                 </p>
                             </div>
+
                             <div class="item-detail__comment">
                                 <img class="icon" src="{{ asset('images/comment-icon.png') }}" alt="コメントアイコン">
                                 <p class="item-detail__comment-count">
@@ -42,11 +63,13 @@
                             </div>
                         </div>
 
-                        <a href="{{ route('purchase.create', $item->id) }}">
-                            <x-button class="item-detail__purchase" type="button">
-                            購入手続きへ
-                            </x-button>
-                        </a>
+                        @if(!$item->purchase)
+                            <a href="{{ route('purchase.create', $item->id) }}" class="btn item-detail__purchase">
+                                購入手続きへ
+                            </a>
+                        @else
+                            <span class="sold-text">売り切れ</span>
+                        @endif
                     </article>
 
                     <!--  商品説明  -->
@@ -93,19 +116,28 @@
                             @foreach($item->comments as $comment)
                             <li class="comments__item">
                                 <div class="comments__user">
-                                    <img class="comments__avatar" src="#" alt="user-image">
-                                    <p class="comments__name">user_name</p>
+                                    <img class="comments__avatar" src="{{ $comment->user->profile && $comment->user->profile->image ? asset('storage/' . $comment->user->profile->image) : asset('images/default.png') }}" alt="user-image">
+                                    <p class="comments__name">{{ $comment->user->name}}</p>
                                 </div>
-                                <p class="comment__text">{{ $comment->comment }}</p>
+                                <p class="comments__text">{{ $comment->comment }}</p>
                             </li>
                         @endforeach
                         </ul>
 
                         <div class="comments__form">
                             <div class="comments__form-title">商品へのコメント</div>
-                            <form class="comments__form-text" action="#" method="post">
+                            <form class="comments__form-text" action="/item/{{ $item->id }}/comment" method="POST">
                                 @csrf
-                                <textarea name="comment" rows="5"></textarea>
+                                <textarea name="comment" rows="5">
+                                {{ old('comment') }}
+                                </textarea>
+
+                                 @error('comment')
+                                    <p class="error-message">{{ $message }}
+                                @enderror
+
+
+
                                 <x-button  class="comments__form-submit" type="submit" >
                                     コメントを送信する
                                 </x-button>

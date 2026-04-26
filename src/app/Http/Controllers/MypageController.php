@@ -18,10 +18,10 @@ class MypageController extends Controller
 
         if ($page === 'buy') {
             //購入した商品
-            $items = $user->purchases;
+            $items = $user->purchases()->with('item')->latest()->get();
         } else {
             //デフォルト（出品）
-            $items = $user->items;
+            $items = $user->items()->with('purchase')->latest()->get();
         }
 
     return view('mypage.index', compact('user', 'profile', 'items', 'page'));

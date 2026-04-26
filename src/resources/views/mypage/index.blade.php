@@ -34,12 +34,25 @@
 
     <div class="exhibition">
         <ul class="item__list">
-            @foreach($items as $item)
-                <x-item-card :item="$item" />
-            @endforeach
+            {{-- BUY --}}
+            @if($page === 'buy')
+                @forelse($items as $purchase)
+                    <x-item-card :item="$purchase->item" />
+                @empty
+                    <p>購入した商品はありません</p>
+                @endforelse
+            @endif
+
+            {{-- SELL --}}
+            @if($page !== 'buy')
+                @forelse($items as $item)
+                    <x-item-card :item="$item" />
+                @empty
+                    <p>出品した商品はありません</p>
+                @endforelse
+            @endif
+
         </ul>
     </div>
-
-</div>
 
 @endsection

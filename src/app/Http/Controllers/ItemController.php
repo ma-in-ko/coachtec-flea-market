@@ -17,7 +17,7 @@ class ItemController extends Controller
     /*商品一覧トップ画面*/
     public function index()
     {
-        $items = Item::latest()->get();
+        $items = Item::with('purchase')->latest()->get();
 
         return view('items.index',compact('items'));
     }
@@ -25,7 +25,12 @@ class ItemController extends Controller
     /*詳細画面*/
     public function show(Item $item)
     {
-        $item->load(['categories', 'comments.user']);
+        $item->load([
+            'categories',
+            'comments.user',
+            'purchase',
+            'likes']);
+
         $item->loadCount(['likes','comments']);
 
         return view('items.show', compact('item'));

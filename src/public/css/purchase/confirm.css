@@ -107,3 +107,7 @@ li {
     color: #fff;
     font-weight: bold;
 }
+
+.error-message {
+    color: red;
+}
