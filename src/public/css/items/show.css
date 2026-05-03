@@ -37,17 +37,17 @@ article {
 }
 
 .item-detail__name {
-    font-size: 25px;
+    font-size: 28px;
     font-weight: bold;
 }
 
 .item-detail__brand {
     margin-top: 0;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .price {
-    font-size: 25px;
+    font-size: 24px;
 }
 
 .item-detail__evaluation {
@@ -115,7 +115,10 @@ article {
 }
 
 .comments__text {
-    margin: 0;
+    max-width: 600px;
+    word-break: break-word;
+    margin: 0 aruto;
+    padding: 0 16px;
     line-height: 1.4;
 }
 
@@ -138,9 +141,12 @@ article {
 }
 
 textarea {
-    resize: vertical;
+    padding-left: 10px;
+    padding-top: 10px;
+    resize: none;
     width: 90%;
     height: 15vh;
+    line-height: 1.6;
 }
 
 .comments__form-submit {

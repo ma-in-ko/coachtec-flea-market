@@ -42,12 +42,12 @@
                         </div>
                         <ul class="purchase__shipping-address">
                             <li class="postcode">
-                                <span>{{ session('postal_code') }}
+                                <span>{{ $address['postal_code'] }}
                                 </span>
                             </li>
                             <li class="address">
-                                {{ session('address')}}
-                                {{ session('building') }}
+                                {{ $address['address'] }}
+                                {{ $address['building'] }}
                             </li>
                         </ul>
                     </div>

@@ -24,8 +24,17 @@
 
             <div class="header__search-wrapper">
                 <div class="header__search">
-                    <form action="" method="get">
-                        <input type="text" name="keyword" placeholder="なにをお探しですか？">
+                    @if(request()->routeIs('items.mylist'))
+                        <form action="{{ route('items.mylist') }}" method="GET">
+                    @else
+                        <form action="{{ route('items.index') }}" method="GET">
+                    @endif
+
+                        <input
+                            type="text"
+                            name="keyword"
+                            value="{{ request('keyword') }}"
+                            placeholder="なにをお探しですか？Enterで検索">
                     </form>
                 </div>
             </div>
@@ -33,14 +42,24 @@
             <div class="header__nav-wrapper">
                 <nav class="header__nav">
                     <ul>
+                        @auth
                         <li>
-                            <form action="{{ route('logout') }}" method="post">
+                            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                ログアウト
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
                                 @csrf
-                                <button type="submit" class="header__logout">ログアウト</button>
                             </form>
                         </li>
+                        @else
+                        <li>
+                            <a href="{{ route('login') }}">ログイン</a>
+                        </li>
+                        @endauth
+
                         <li><a href="{{ route('mypage') }}">マイページ</a></li>
-                        <li><a href="#">出品</a></li>
+                        <li><a href="{{ route('sell.store') }}">出品</a></li>
                     </ul>
                 </nav>
             </div>

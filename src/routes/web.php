@@ -22,7 +22,9 @@ use App\Http\Controllers\LoginController;
 
 /*商品関連*/
 /*一覧画面*/
-Route::get('/', [ItemController::class, 'index']);
+Route::get('/', [ItemController::class, 'index'])->name('items.index');
+/*マイリスト*/
+Route::get('/mylist',[ItemController::class,'mylist'])->name('items.mylist');
 /*詳細画面*/
 Route::get('/item/{item}', [ItemController::class, 'show']);
 
@@ -66,6 +68,7 @@ Route::middleware('auth')->group(function() {
     /*配送先変更*/
     Route::get('/purchase/address/{item}', [PurchaseController::class, 'edit'])->name('purchase.address.edit');
     Route::put('/purchase/address/{item}', [PurchaseController::class, 'update'])->name('purchase.address.update');
+    Route::post('purchase/address/{item}', [PurchaseController::class, 'resetAddress'])->name('purchase.address.reset');
 
     /*購入確定（コンビニ）*/
     Route::post('/purchase/{item}', [PurchaseController::class, 'store'])->name('purchase.store');

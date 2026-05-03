@@ -71,7 +71,7 @@ class ItemTableSeeder extends Seeder
                 'user_id' => $userIds[array_rand($userIds)],
                 'name' =>'ノートPC',
                 'price' => 45000,
-                'brand' => 'null',
+                'brand' => '',
                 'description' =>'高性能なノートPC',
                 'condition' => '良好',
                 'image' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Living+Room+Laptop.jpg',

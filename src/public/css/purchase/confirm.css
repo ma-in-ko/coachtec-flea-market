@@ -60,10 +60,15 @@
 .shipping-address {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 0;
 }
 
 .shipping-address__change {
     color: #00bfff;
+}
+
+.purchase__shipping-address {
+    margin-top: 0;
 }
 
 li {
@@ -106,6 +111,7 @@ li {
     background-color: orangered;
     color: #fff;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .error-message {

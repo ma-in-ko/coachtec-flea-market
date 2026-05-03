@@ -15,21 +15,65 @@ use App\Http\Requests\ExhibitionRequest;
 class ItemController extends Controller
 {
     /*商品一覧トップ画面*/
-    public function index()
+    public function index(Request $request)
     {
-        $items = Item::with('purchase')->latest()->get();
+        $query = Item::query();
+
+        //自分の商品除外
+        if(auth()->check()) {
+            $query->where('user_id', '!=', auth()->id());
+        }
+
+        //検索
+        if($request->keyword) {
+            $query->where('name', 'like', '%' . $request->keyword . '%');
+        }
+
+        $items = $query
+            ->with('purchase')
+            ->latest()
+            ->paginate(12)
+            ->appends($request->query());
+
+        $keyword = $request->keyword;
 
         return view('items.index',compact('items'));
     }
+
+    /*マイリスト*/
+    public function mylist(Request $request)
+    {
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
+
+        $query = Item::whereHas('likes', function ($q) {
+            $q->where('user_id', auth()->id());
+        });
+
+        //検索
+        if($request->keyword) {
+            $query->where('name', 'like', '%' . $request->keyword . '%');
+        }
+
+        $items = $query
+            ->with('purchase')
+            ->latest()
+            ->paginate(12)
+            ->appends($request->query());
+
+        return view('items.index', compact('items'));
+    }
+
 
     /*詳細画面*/
     public function show(Item $item)
     {
         $item->load([
             'categories',
-            'comments.user',
+            'comments.user.profile',
             'purchase',
-            'likes']);
+            ]);
 
         $item->loadCount(['likes','comments']);
 

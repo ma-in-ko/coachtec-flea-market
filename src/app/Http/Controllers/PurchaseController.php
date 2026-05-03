@@ -37,11 +37,15 @@ class PurchaseController extends Controller
         $user = auth()->user();
         $profile = $user->profile;
 
-        return view('purchase.confirm', [
-            'item' => $item,
+        $address = [
             'postal_code' => session('postal_code') ?? $profile->postal_code ?? '',
             'address' => session('address') ?? $profile->address ?? '',
             'building' => session('building') ?? $profile->building ?? '',
+        ];
+
+        return view('purchase.confirm', [
+            'item' => $item,
+            'address' => $address,
            ]);
     }
 
@@ -67,7 +71,13 @@ class PurchaseController extends Controller
             'building' => $request->building
         ]);
 
-        return redirect()->route('purchase.create', $item->id);
+        return redirect()->route('purchase.create',['item' => $item->id]);
+    }
+
+    public function resetAddress(Item $item)
+    {
+        session()->forget(['postal_code', 'address', 'building']);
+        return redirect()->route('purchase.create', ['item' => $item->id]);
     }
 
     /*購入確定*/
