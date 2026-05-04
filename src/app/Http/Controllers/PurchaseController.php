@@ -19,22 +19,30 @@ class PurchaseController extends Controller
     /*購入*/
     public function create(Item $item)
     {
-        //DBで購入済チェック
-        if (Purchase::where('item_id', $item->id)->exists()) {
-            abort(403, 'この商品はすでに購入されています');
-        }
+        $user = auth()->user();
 
         //自分の商品チェック
-        if($item->user_id === auth()->id()) {
-            abort(403, '自分の商品は購入できません');
+        if($item->user_id === $user->id) {
+                abort(403, '自分の商品は購入できません');
         }
+
+        //購入済チェック
+        if (Purchase::where('item_id', $item->id)->exists()) {
+                abort(error, 'この商品はすでに購入されています');
+        }
+
+        //プロフィールチェック
+        if(!$user->profile) {
+                return redirect()->route('profile.edit')
+                    ->with('message', '購入にはプロフィール登録が必要です')
+                    ->with(session('intended', route('mypage')));
+                }
 
         //初期支払い方法
         if (!session()->has('payment_method')) {
             session(['payment_method' => 1]);
         }
 
-        $user = auth()->user();
         $profile = $user->profile;
 
         $address = [

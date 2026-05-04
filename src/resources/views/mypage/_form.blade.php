@@ -9,7 +9,10 @@
             <!--  プロフィール画像  -->
             <div class="profile-form__group">
                 <div class="image-upload">
-                    <img src="{{ $profile->image ? asset('storage/' . $profile->image) : 'default.png' }}" class="profile-form__image" alt="">
+                    <img src="{{ $profile && $profile->image
+                        ? asset('storage/' . $profile->image)
+                        : asset('images/default.png') }}"
+                        class="profile-form__image" alt="ユーザー画像">
                     <label class="profile-form__select">
                         画像を選択する
                         <input type="file" name="image" class="profile-form__select" hidden>
