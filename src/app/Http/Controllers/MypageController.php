@@ -45,23 +45,22 @@ class MypageController extends Controller
             'name' => $request->name
         ]);
 
-        $imagePath = null;
+        $data = [
+            'user_id' => $user->id,
+            'postal_code' => $request->postal_code,
+            'address' => $request->address,
+            'building' => $request->building,
+            ];
 
         //画像がある場合
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('profiles', 'public');
+            $data['image'] = $request->file('image')->store('profiles', 'public');
         }
 
         // プロフィール保存
         Profile::updateOrCreate(
             ['user_id' => $user->id],
-            [
-                'user_id' => $user->id,
-                'postal_code' => $request->postal_code,
-                'address' => $request->address,
-                'building' => $request->building,
-                'image' => $imagePath,
-            ]
+            $data
         );
 
         return redirect()->route('mypage');

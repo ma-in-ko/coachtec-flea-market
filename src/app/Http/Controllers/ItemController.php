@@ -44,7 +44,8 @@ class ItemController extends Controller
     public function mylist(Request $request)
     {
         if (!auth()->check()) {
-            return redirect('/login');
+            $items = collect();
+            return view('items.index', compact('items'));
         }
 
         $query = Item::whereHas('likes', function ($q) {

@@ -9,8 +9,8 @@
 
         <div class="user-profile">
             <div class="user-profile__image-wrapper">
-                <img src="{{ $profile && $profile->image && Storage::disk('public')->exists('profiles/' . $profile->image)
-                    ? asset('storage/profiles/' . $profile->image)
+                <img src="{{ $profile && $profile->image && Storage::disk('public')->exists($profile->image)
+                    ? asset('storage/' . $profile->image)
                     : asset('images/default.png') }}"
                     class="user-profile__image" alt="ユーザー画像">
             </div>

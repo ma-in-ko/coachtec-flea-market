@@ -32,7 +32,7 @@ class RegisterRequest extends FormRequest
                 Rule::unique('users', 'email'),
                 ],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ];
+            ];
     }
 
     public function messages()
@@ -46,6 +46,6 @@ class RegisterRequest extends FormRequest
             'password.required' => 'パスワードを入力してください',
             'password.min' => 'パスワードは8文字以上で入力してください',
             'password.confirmed' => 'パスワードと一致しません',
-        ];
+            ];
     }
 }

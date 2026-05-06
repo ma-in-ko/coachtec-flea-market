@@ -22,7 +22,8 @@
 </div>
 
     <div class="exhibition">
-        @if($items->isEmpty())
+        @if(request()->is('mylist') && !auth()->check())
+        @elseif($items->isEmpty())
             <p>商品がありません</p>
         @else
             <ul class="item__list">

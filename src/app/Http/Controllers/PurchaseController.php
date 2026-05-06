@@ -28,14 +28,15 @@ class PurchaseController extends Controller
 
         //購入済チェック
         if (Purchase::where('item_id', $item->id)->exists()) {
-                abort(error, 'この商品はすでに購入されています');
+                return redirect('/')
+                    ->with('error', 'この商品はすでに購入されています');
         }
 
         //プロフィールチェック
         if(!$user->profile) {
+                session(['url.intended' => route('mypage')]);
                 return redirect()->route('profile.edit')
-                    ->with('message', '購入にはプロフィール登録が必要です')
-                    ->with(session('intended', route('mypage')));
+                    ->with('message', '購入にはプロフィール登録が必要です');
                 }
 
         //初期支払い方法
@@ -54,7 +55,7 @@ class PurchaseController extends Controller
         return view('purchase.confirm', [
             'item' => $item,
             'address' => $address,
-           ]);
+        ]);
     }
 
 
@@ -94,9 +95,6 @@ class PurchaseController extends Controller
         //支払い方法
         $payment_method = $request->payment_method;
 
-        //DBロック
-        $item = Item::lockForUpdate()->findOrFail($item->id);
-
         //購入済みチェック
         if (Purchase::where('item_id', $item->id)->exists()) {
             return back()->withErrors(['items' => 'すでに購入済です']);
@@ -112,6 +110,14 @@ class PurchaseController extends Controller
         if($payment_method == 1) {
 
             DB::transaction(function () use ($item, $payment_method) {
+
+                //ロック
+                $item = Item::lockForUpdate()->findOrFail($item->id);
+
+                //再チェック
+                if (Purchase::where('item_id', $item->id)->exists()) {
+                    throw new \Exception('すでに購入済です');
+                }
 
                 //購入情報保存
                 $profile = auth()->user()->profile;

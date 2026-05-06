@@ -11,21 +11,23 @@ use App\Actions\Fortify\CreateNewUser;
 
 class AuthController extends Controller
 {
-    /*会員登録*/
-    public function create()
+    /*会員登録
+    /*public function create()
     {
         return view('auth.register');
     }
 
     public function store(Request $request)
     {
-        $createNewUser->crate($request->validated());
+        $user = User::create($request->validated());
 
-        return redirect('/');
+        Auth::login($user);
+
+        return redirect()->route('profile.edit');
     }
 
-    /*ログイン*/
-    /*public function showLogin()
+    //ログイン
+    public function showLogin()
     {
         return view('auth.login');
     }
@@ -44,9 +46,9 @@ class AuthController extends Controller
         }
     }
 
-    /*ログアウト*/
+    ログアウト
     public function logout()
     {
         return redirect('/');
-    }
+    }*/
 }

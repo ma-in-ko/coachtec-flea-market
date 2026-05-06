@@ -10,12 +10,14 @@ use Illuminate\Cache\RateLimiting\Limit;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Contracts\LogoutResponse;
 use Laravel\Fortify\Actions\AttemptToAuthenticate;
+use Laravel\Fortify\Contracts\RegisterResponse;
 
 use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 use App\Actions\Fortify\LogoutResponse as CustomLogoutResponse;
+use App\Http\Responses\RegisterResponse as CustomRegisterResponse;
 
 
 class FortifyServiceProvider extends ServiceProvider
@@ -25,7 +27,10 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(
+        RegisterResponse::class,
+        CustomRegisterResponse::class
+        );
     }
 
     /**

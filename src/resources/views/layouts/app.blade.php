@@ -34,7 +34,7 @@
                             type="text"
                             name="keyword"
                             value="{{ request('keyword') }}"
-                            placeholder="なにをお探しですか？Enterで検索">
+                            placeholder="なにをお探しですか？            Enterで検索">
                     </form>
                 </div>
             </div>
