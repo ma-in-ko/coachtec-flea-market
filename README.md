@@ -46,7 +46,7 @@
 ### Dockerビルド
 ```
 git clone https://github.com/ma-in-ko/coachtec-flea-market.git
-cd coachtec-flea-marcket
+cd coachtec-flea-market
 docker compose up -d --build
 ```
 
@@ -56,7 +56,7 @@ docker compose exec php bash
 composer install  
 cp .env.example .env  
 php artisan key:generate
-php artisan storage:link
+php artisan storage:link　 # 画像表示用のシンボリックリンクを作成
 ```
 
 ### データベース
