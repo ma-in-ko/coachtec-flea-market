@@ -89,9 +89,9 @@ password: password
 会員登録後はプロフィール設定画面へ遷移し、ユーザー情報を登録できるようにしています。
 
 ### メール認証
-Mailhogを使用しています。
-認証メールは以下で確認できます。
-http://localhost:8025
+Mailhogを使用しています。  
+認証メールは以下で確認できます。  
+http://localhost:8025  
 
 ## Stripe設定
 
