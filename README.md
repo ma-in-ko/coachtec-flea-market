@@ -20,6 +20,7 @@
 * 配送先変更機能
 * マイページ
 * プロフィール編集
+* メール認証
   
 
 ## 画面一覧
@@ -56,13 +57,21 @@ docker compose exec php bash
 composer install  
 cp .env.example .env  
 php artisan key:generate
-php artisan storage:link　 # 画像表示用のシンボリックリンクを作成
+php artisan storage:link
+# 画像表示用のシンボリックリンクを作成
 ```
 
 ### データベース
 ```
-php artisan migrate  
+php artisan migrate --seed  
 ```
+
+## テストアカウント
+
+### 一般ユーザー
+
+email:test@example.com
+password: password
 
 ## 認証機能
 
@@ -79,6 +88,11 @@ php artisan migrate
 ### 初回ログイン
 会員登録後はプロフィール設定画面へ遷移し、ユーザー情報を登録できるようにしています。
 
+### メール認証
+Mailhogを使用しています。
+認証メールは以下で確認できます。
+http://localhost:8025
+
 ## Stripe設定
 
 .envファイルに以下を設定してください。
@@ -94,8 +108,7 @@ Stripeのテストモードを使用しています。
 有効期限：任意の未来日
 cvc：任意の3桁
 
-## URL  
-*環境開発  
+## 環境開発URL  
  http://localhost  
 *phpMyAdmin  
  http://localhost:8080  
