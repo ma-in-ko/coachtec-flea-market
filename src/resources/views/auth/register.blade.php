@@ -16,33 +16,33 @@
             <div class="login-form__group">
                 <label class="register-form__label">ユーザー名</label>
                 <input type="text" name="name" class="register-form__input" value="{{ old('name') }}">
-                @error('name')
-                    <p class="error-message">{{ $message }}</p>
-                @enderror
+
+                <x-error field="name" />
+
             </div>
             <div class="register-form__group">
                 <label class="register-form__label">メールアドレス</label>
                 <input type="email" name="email" class="register-form__input" value="{{ old('email') }}">
-                @error('email')
-                    <p class="error-message">{{ $message }}</p>
-                @enderror
+
+                <x-error field="email" />
+
             </div>
             <div class="register-form__group">
                 <label class="register-form__label">パスワード</label>
                 <input type="password" name="password" class="register-form__input">
-                @error('password')
-                    <p class="error-message">{{ $message }}</p>
-                @enderror
+
+                <x-error field="password" />
+
             </div>
             <div class="register-form__group">
                 <label class="register-form__label">確認用パスワード</label>
                 <input type="password" name="password_confirmation" class="register-form__input">
-                @error('password_confirmation')
-                    <p class="error-message">{{ $message }}</p>
-                @enderror
+
+                <x-error field="password_confirmation" />
+
             </div>
 
-            <button type="submit" class="login-form__submit">登録する</button>
+            <x-button type="submit" class="btn login-form__submit">登録する</x-button>
             <a href="{{ route('login') }}" class="member-login">ログインはこちら</a>
         </form>
     </section>

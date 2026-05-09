@@ -1,5 +1,7 @@
 .card {
-    max-width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .card__inner {
@@ -150,6 +152,7 @@ textarea {
 }
 
 .comments__form-submit {
+    width: 90%;
     margin-top: 30px;
 }
 
@@ -157,7 +160,7 @@ a {
     text-decoration: none;
 }
 
-a.btn {
+.item-detail__purchase  {
     display: inline-block;
     width: 90%;
     text-align: center;
@@ -167,7 +170,6 @@ a.btn {
     color: #fff;
     font-size: 20px;
     border: none;
-
 }
 
 .sold-text {
@@ -189,5 +191,4 @@ a.btn {
 
 .error-message {
     margin: 2px 0 0;
-    color: red;
 }

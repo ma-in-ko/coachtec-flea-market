@@ -19,9 +19,8 @@
                         <input type="file" name="image" class="sell-form__image">
                     </label>
 
-                    @error('image')
-                        <p class="error-message">{{ $message }}</p>
-                    @enderror
+                    <x-error field="image" />
+
                 </div>
             </div>
 
@@ -158,9 +157,9 @@
                     <label for="cat14" class="category__button">
                     ベビー・キッズ
                     </label>
-                    @error('categories')
-                     <p class="error-message">{{ $message }}</p>
-                    @enderror
+
+                    <x-error field="categories" />
+
                 </div>
             </div>
 
@@ -170,12 +169,11 @@
                         <option value="" disabled selected>選択してください</option>
                         <option value="1" {{ old('condition') == '1' ? 'selected' : '' }}>良好</option>
                         <option value="2" {{ old('condition') == '2' ? 'selected' : '' }}>目立った傷や汚れなし</option>
-                        <option value="3" {{ old('condition') == '3' ? 'selected' : '' }}>やや傷や汚れなし</option>
+                        <option value="3" {{ old('condition') == '3' ? 'selected' : '' }}>やや傷や汚れあり</option>
                         <option value="4" {{ old('condition') == '4' ? 'selected' : '' }}>状態が悪い</option>
                     </select>
-                    @error('condition')
-                        <p class="error-message">{{ $message }}</p>
-                    @enderror
+
+                    <x-error field="condition" />
             </div>
 
             <!-- 商品名と説明 -->
@@ -183,25 +181,25 @@
             <div class="sell-form__group">
                 <label class="sell-form__label">商品名</label>
                 <input type="text" name="name" class="sell-form__input" value="{{ old('name') }}">
-                @error('name')
-                 <p class="error-message">{{ $message }}</p>
-                @enderror
+
+                <x-error field="name" />
+
             </div>
 
             <div class="sell-form__group">
                 <label class="sell-form__label">ブランド名</label>
                 <input type="text" name="brand" class="sell-form__input" value="{{ old('brand') }}">
-                @error('brand')
-                    <p class="error-message">{{ $message }}</p>
-                @enderror
+
+                <x-error field="brand" />
+
             </div>
 
             <div class="sell-form__group">
                 <label class="sell-form__label">商品の説明</label>
                 <textarea name="description" class="sell-form__textarea" cols="30" rows="10">{{ old('description') }}</textarea>
-                @error('description')
-                    <p class="error-message">{{ $message }}</p>
-                @enderror
+
+                <x-error field="description" />
+
             </div>
 
             <div class="sell-form__group">
@@ -209,12 +207,12 @@
                 <div class="price-input">
                     <span class="sell-form__price-mark">￥</span>
                     <input type="number" name="price" class="sell-form__input" value="{{ old('price') }}">
-                    @error('price')
-                        <p class="error-message">{{ $message }}</p>
-                    @enderror
+
+                    <x-error field="price" />
+
                 </div>
             </div>
-            <button type="submit" class="sell-form__submit">出品する</button>
+            <x-button type="submit" class="btn sell-form__submit">出品する</x-button>
         </form>
     </section>
 

@@ -31,7 +31,10 @@
                     <x-item-card :item="$item" />
                 @endforeach
             </ul>
-            {{ $items->links() }}
+            <div class="pagination">
+                {{ $items->links() }}
+            </div>
+
         @endif
 
     </div>

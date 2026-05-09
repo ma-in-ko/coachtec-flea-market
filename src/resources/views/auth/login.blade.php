@@ -17,24 +17,19 @@
             <div class="login-form__group">
                 <label class="login-form__label">メールアドレス</label>
                 <input type="email" name="email" class="login-form__input" value="{{ old('email') }}">
-                @error('email')
-                    <div class="error-message">
-                        {{ $message}}
-                    </div>
-                @enderror
+
+                <x-error field="email" />
+
             </div>
 
             <div class="login-form__group">
                 <label class="login-form__label">パスワード</label>
                 <input type="password" name="password" class="login-form__input">
-                @error('password')
-                    <div class="error-message">
-                        {{ $message}}
-                    </div>
-                @enderror
+
+                <x-error field="password" />
             </div>
 
-            <button class="login-form__submit">ログインする</button>
+            <x-button class="btn login-form__submit">ログインする</x-button>
             <a href="{{ route('register') }}" class="member-register">会員登録はこちら</a>
         </form>
     </section>

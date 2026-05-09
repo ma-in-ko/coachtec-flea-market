@@ -15,7 +15,18 @@
         </tr>
         <tr>
             <th class="condition">商品の状態</th>
-            <td>{{ $item->condition }}</td>
+            <td>
+                @if($item->condition == 1)
+                    良好
+                @elseif($item->condition == 2)
+                    目立った傷や汚れなし
+                @elseif($item->condition == 3)
+                    やや傷や横れあり
+                @elseif($item->condition == 4)
+                    状態が悪い
+                @endif
+                
+            </td>
         </tr>
     </table>
 </article>

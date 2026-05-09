@@ -41,7 +41,7 @@ Route::get('/item/{item}', [ItemController::class, 'show']);
 
 
 /*認証機能必須*/
-Route::middleware('auth')->group(function() {
+Route::middleware('auth', 'verified')->group(function() {
 
     /*出品*/
     Route::get('/sell', [ItemController::class, 'create']);
@@ -82,10 +82,6 @@ Route::middleware('auth')->group(function() {
     /*変更*/
     Route::get('/mypage/profile', [MypageController::class, 'edit'])->name('profile.edit');
     Route::put('/mypage/profile', [MypageController::class, 'update'])->name('profile.update');
-
-    Route::get('/verify-test', function() {
-        return view('auth.verify-email');
-    });
 
     Route::get('/mypage/form', function() {
         return view('mypage._form');

@@ -43,7 +43,7 @@ class ProfileRequest extends FormRequest
             'address.required' => '住所を入力してください',
             'address.string' => '住所は文字で入力してください',
             'address.max' => '住所は255文字以内で入力してください',
-
+            'building.max' => '建物名は255文字以内で入力してください',
         ];
     }
 }

@@ -23,9 +23,7 @@
                 @csrf
                 <textarea name="comment" rows="5">{{ old('comment') }}</textarea>
 
-                @error('comment')
-                    <p class="error-message">{{ $message }}
-                @enderror
+                <x-error field="comment"/>
 
                 <x-button  class="comments__form-submit" type="submit" >
                     コメントを送信する

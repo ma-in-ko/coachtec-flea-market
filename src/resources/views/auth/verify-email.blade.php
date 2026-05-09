@@ -12,10 +12,16 @@
             メール認証を完了してください。
             </div>
 
-            <button class="verify-email__button">
-            認証はこちらから
-            </button>
-            <a href="#" class="verify-email__resend">認証メールを再送する</a>
+            <a href="http://localhost:8025"
+                target="blank"
+                class="verify-email__button">
+                認証はこちらから
+            </a>
+            <form action="{{ route('verification.send') }}" method="POST">
+                @csrf
+                <x-button class="verify-email__resend">
+                    認証メールを再送する
+                </x-button>
         </div>
     </section>
 @endsection

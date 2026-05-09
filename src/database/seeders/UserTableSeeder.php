@@ -16,8 +16,8 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $user = [
-            'name' => '出品者',
-            'email' => 'seller@email.com',
+            'name' => 'テスト',
+            'email' => 'test@email.com',
             'password' => Hash::make('password'),
             'email_verified_at' => now(),
             'created_at' => now(),
@@ -26,8 +26,8 @@ class UserTableSeeder extends Seeder
         DB::table('users')->insert($user);
 
         $user = [
-            'name' => '購入者',
-            'email' => 'buyer@email.com',
+            'name' => 'サンプル',
+            'email' => 'sample@email.com',
             'password' =>Hash::make('password'),
             'email_verified_at' =>now(),
             'created_at' => now(),

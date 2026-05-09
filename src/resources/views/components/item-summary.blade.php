@@ -49,7 +49,7 @@
     </div>
 
     @if(!$item->purchase)
-        <a href="{{ route('purchase.create', $item->id) }}" class="btn item-detail__purchase">
+        <a href="{{ route('purchase.create', $item->id) }}" class="item-detail__purchase">
             購入手続きへ
         </a>
     @else

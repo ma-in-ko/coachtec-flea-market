@@ -1,9 +1,14 @@
 .btn {
-    width: 90%;
+    width: 100%;
     border-radius: 3px;
     background-color: orangered;
     padding: 5px 30px;
     color: #fff;
     font-size: 20px;
     border: none;
+    cursor: pointer;
+}
+
+.error-message {
+    color: red;
 }

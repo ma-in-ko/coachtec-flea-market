@@ -1,5 +1,5 @@
 .main__inner {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -67,4 +67,57 @@
     font-size: 12px;
     padding: 8px 8px;
     border-radius: 3px;
+}
+
+.pagination nav {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+.pagenation ul {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+}
+
+.pagenation li {
+    list-style: none;
+}
+
+.pagination span,
+.pagination a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36ox;
+    padding: 0 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #555;
+}
+
+.pagenation a:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.pagination .active span {
+    background-color: #000;
+    color: #fff;
+}
+
+.pagination svg {
+    width: 20px;
+    height: 20px;
+}
+
+.pagination p {
+    display: none;
+}
+
+.pagination nav > div:first-child {
+    display: none;
 }

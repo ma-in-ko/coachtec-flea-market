@@ -1,17 +1,24 @@
-.main__inner {
-    max-width: 1200px;
-    margin: 30px auto;
+.main {
+    max-width: 1400px;
+    margin: 0 auto;
     padding: 0 20px;
+}
+
+.main__inner {
+    margin: 30px auto;
 }
 
 .user-profile {
     display: flex;
+    justify-content: space-around;
     align-items: center;
-    gap: 20px;
+    gap: 60px;
 }
 
-.user-profile__info {
-    flex-grow: 1;
+.user-profile__left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 .user-profile__image-wrapper {
@@ -59,7 +66,8 @@
 
 .top__menu a.active {
     color: #ff0000;
-    font-weight: bold
+    font-weight: bold;
+    border: none;
 }
 
 .exhibition {
@@ -71,6 +79,7 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 30px;
     list-style: none;
+    padding: 0;
 }
 
 .item__image-wrapper {
