@@ -30,7 +30,7 @@ class AuthController extends Controller
     public function showLogin()
     {
         return view('auth.login');
-    }
+    }*/
 
     public function login(LoginRequest $request)
     {
@@ -39,14 +39,14 @@ class AuthController extends Controller
         if(Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect('/');
+        }
 
             return back()->withErrors([
                 'email' => 'ログイン情報が登録されていません',
             ]);
-        }
     }
 
-    ログアウト
+    /*ログアウト
     public function logout()
     {
         return redirect('/');

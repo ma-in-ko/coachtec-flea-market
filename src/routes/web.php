@@ -35,7 +35,7 @@ Route::get('/item/{item}', [ItemController::class, 'show']);
 //Route::post('/register', [AuthController::class, 'register']);
 /*ログイン*/
 //Route::get('/login', [AuthController::class, 'showLogin']);
-//Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
 /*ログアウト*/
 //Route::post('/logout', [AuthController::class, 'logout']);
 

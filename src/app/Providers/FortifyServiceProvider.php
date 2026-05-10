@@ -9,8 +9,8 @@ use Illuminate\Cache\RateLimiting\Limit;
 
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Contracts\LogoutResponse;
-use Laravel\Fortify\Actions\AttemptToAuthenticate;
 use Laravel\Fortify\Contracts\RegisterResponse;
+use Laravel\Fortify\Contracts\VerifyEmailResponse;
 
 use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
@@ -18,6 +18,7 @@ use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 use App\Actions\Fortify\LogoutResponse as CustomLogoutResponse;
 use App\Http\Responses\RegisterResponse as CustomRegisterResponse;
+use App\Http\Responses\VerifyEmailResponse as CustomVerifyEmailResponse;
 
 
 class FortifyServiceProvider extends ServiceProvider
@@ -27,10 +28,7 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(
-        RegisterResponse::class,
-        CustomRegisterResponse::class
-        );
+       //
     }
 
     /**
@@ -40,6 +38,16 @@ class FortifyServiceProvider extends ServiceProvider
     {
         // ユーザー作成
         Fortify::createUsersUsing(CreateNewUser::class);
+
+        $this->app->singleton(
+            RegisterResponse::class,
+            CustomRegisterResponse::class
+        );
+
+        $this->app->singleton(
+            VerifyEmailResponse::class,
+            CustomVerifyEmailResponse::class
+        );
 
         // プロフィール更新
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
@@ -65,13 +73,17 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         //ログインバリデーション
-        Fortify::authenticateThrough(function () {
+        /*Fortify::authenticateThrough(function () {
             return [
                 function ($request, $next) {
 
                     validator($request->all(), [
                         'email' => ['required', 'email'],
                         'password'=> ['required'],
+                    ], [
+                        'email.required' => 'メールアドレスを入力してください',
+                        'email.email' => 'メールアドレスはメール形式で入力してください',
+                        'password.required' => 'パスワードを入力してください',
                     ])->validate();
 
                 return $next($request);
@@ -79,7 +91,7 @@ class FortifyServiceProvider extends ServiceProvider
 
                 AttemptToAuthenticate::class,
             ];
-        });
+        });*/
 
         // ログイン試行制限（なし）
         RateLimiter::for('login', function (Request $request) {

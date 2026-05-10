@@ -10,7 +10,12 @@
             <div class="card__inner">
                 <section class="card__left">
                     <div class="purchase-item">
-                        <img src="{{ $item->image }}" alt="商品画像">
+                        @if(Str::startsWith($item->image, 'http'))
+                            <img src="{{ $item->image }}" alt="商品画像">
+                        @else
+                            <img src="{{ asset('storage/' .$item->image) }}" alt="商品画像">
+                        @endif
+
                         <div class="purchase-item__group">
                             <p class="purchase__name">
                                 {{ $item->name}}
