@@ -7,7 +7,6 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,37 +25,26 @@ Route::get('/', [ItemController::class, 'index'])->name('items.index');
 /*マイリスト*/
 Route::get('/mylist',[ItemController::class,'mylist'])->name('items.mylist');
 /*詳細画面*/
-Route::get('/item/{item}', [ItemController::class, 'show']);
-
-
-//会員関連
-//登録
-//Route::get('/register', [AuthController::class, 'create']);
-//Route::post('/register', [AuthController::class, 'register']);
-/*ログイン*/
-//Route::get('/login', [AuthController::class, 'showLogin']);
-Route::post('/login', [AuthController::class, 'login'])->name('login');
-/*ログアウト*/
-//Route::post('/logout', [AuthController::class, 'logout']);
+Route::get('/item/{item}', [ItemController::class, 'show'])->name('items.show');
 
 
 /*認証機能必須*/
 Route::middleware('auth', 'verified')->group(function() {
 
     /*出品*/
-    Route::get('/sell', [ItemController::class, 'create']);
+    Route::get('/sell', [ItemController::class, 'create'])->name('sell.create');
     Route::post('/sell',[ItemController::class, 'store'])->name('sell.store');
 
     /*コメント関連*/
     /*投稿*/
-    Route::post('/item/{item}/comment', [CommentController::class, 'store']);
+    Route::post('/item/{item}/comment', [CommentController::class, 'store'])->name('comments.store');
 
     /*いいね関連*/
     /*追加*/
-    Route::post('/item/{item}/like', [LikeController::class, 'store']);
+    Route::post('/item/{item}/like', [LikeController::class, 'store'])->name('likes.store');
 
     /*解除*/
-    Route::delete('/item/{item}/like', [LikeController::class, 'destroy']);
+    Route::delete('/item/{item}/like', [LikeController::class, 'destroy'])->name('likes.destroy');
 
     /*購入関連*/
     /*購入*/
@@ -82,7 +70,7 @@ Route::middleware('auth', 'verified')->group(function() {
     /*変更*/
     Route::get('/mypage/profile', [MypageController::class, 'edit'])->name('profile.edit');
     Route::put('/mypage/profile', [MypageController::class, 'update'])->name('profile.update');
-
+    /*変更画面*/
     Route::get('/mypage/form', function() {
         return view('mypage._form');
     });

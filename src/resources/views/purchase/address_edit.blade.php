@@ -15,22 +15,22 @@
             </h2>
 
             <div class="address-edit__group">
-                <label for="postcode" class="address-edit__label">郵便番号</label>
-                <input type="text" name="postal_code" class="address-edit__input">
+                <label for="postal_code" class="address-edit__label">郵便番号</label>
+                <input type="text" name="postal_code" class="address-edit__input" value="{{ old('postal_code') }}">
 
                 <x-error field="postal_code" />
 
                 </div>
             <div class="address-edit__group">
                 <label for="address" class="address-edit__label">住所</label>
-                <input type="text" name="address" class="address-edit__input">
+                <input type="text" name="address" class="address-edit__input" value="{{ old('address') }}">
 
                 <x-error field="address" />
 
             </div>
             <div class="address-edit__group">
-                <label type="buildint" class="address-edit__label">建物名</label>
-                <input type="text" name="building" class="address-edit__input">
+                <label for="building" class="address-edit__label">建物名</label>
+                <input type="text" name="building" class="address-edit__input" value="{{ old('building') }}">
             </div>
             <x-button type="submit" class="btn address-edit__select">更新する</x-button>
         </form>

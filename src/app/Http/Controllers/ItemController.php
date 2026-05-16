@@ -4,11 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Item;
-use App\Models\Profile;
-use App\Models\Purchase;
-use App\Models\Like;
-use App\Models\Comment;
-use App\Models\User;
 use App\Http\Requests\ExhibitionRequest;
 
 
@@ -20,12 +15,12 @@ class ItemController extends Controller
         $query = Item::query();
 
         //自分の商品除外
-        if(auth()->check()) {
+        if (auth()->check()) {
             $query->where('user_id', '!=', auth()->id());
         }
 
         //検索
-        if($request->keyword) {
+        if ($request->keyword) {
             $query->where('name', 'like', '%' . $request->keyword . '%');
         }
 
@@ -34,8 +29,6 @@ class ItemController extends Controller
             ->latest()
             ->paginate(12)
             ->appends($request->query());
-
-        $keyword = $request->keyword;
 
         return view('items.index',compact('items'));
     }
@@ -53,7 +46,7 @@ class ItemController extends Controller
         });
 
         //検索
-        if($request->keyword) {
+        if ($request->keyword) {
             $query->where('name', 'like', '%' . $request->keyword . '%');
         }
 
@@ -107,6 +100,6 @@ class ItemController extends Controller
         //カテゴリー紐づけ
         $item->categories()->sync($request->categories);
 
-        return redirect('/');
+        return redirect()->route('items.index');
     }
 }

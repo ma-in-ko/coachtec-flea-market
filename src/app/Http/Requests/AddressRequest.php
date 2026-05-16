@@ -36,7 +36,7 @@ class AddressRequest extends FormRequest
             'postal_code.regex' => '郵便番号は000-0000の形式で入力してください',
             'address.required' => '住所を入力してください',
             'address.string' => '住所は文字で入力してください',
-            'address.max' => '住所は255文字以内で入力してっください',
+            'address.max' => '住所は255文字以内で入力してください',
         ];
     }
 }

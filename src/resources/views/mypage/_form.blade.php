@@ -1,4 +1,3 @@
-
     <section class="card">
         <form action="{{ route('profile.update') }}" class="profile-form" method="POST" enctype="multipart/form-data">
         @csrf
@@ -30,29 +29,27 @@
                 <x-error field="name" />
 
             </div>
-            <div class="profile-form__group">
-                <label class="profile-form__label">郵便番号</label>
-                <input type="text" name="postal_code" class="profile-form__input"
-                value="{{ old('postal_code', $profile->postal_code ?? '') }}">
 
-                <x-error field="postal_code" />
+            @php
+            $fields = [
+                'postal_code' => '郵便番号',
+                'address' => '住所',
+                'building' => '建物名',
+            ];
+            @endphp
 
-            </div>
-            <div class="profile-form__group">
-                <label class="profile-''form__label">住所</label>
-                <input type="text" name="address" class="profile-form__input"
-                value="{{ old('address', $profile->address ?? '') }}">
+            @foreach($fields as $name => $label)
+                <div class="profile-form__group">
+                    <label class="profile-form__label">
+                        {{ $label }}
+                    </label>
 
-                <x-error field="address" />
+                    <input type="text" name="{{ $name }}" class="profile-form__input" value="{{ old($name, optional($profile)->$name ?? '') }}">
 
-            </div>
-            <div class="profile-form__group">
-                <label class="profile-form__label">建物名</label>
-                <input type="text" name="building" class="profile-form__input"
-                value="{{ old('building', $profile->building ??'') }}">
+                    <x-error :field="$name" />
+                </div>
+            @endforeach
 
-                <x-error field="building" />
-
-            </div>
             <x-button type="submit" class="btn profile-form__update">更新する</x-button>
         </form>
+    </section>

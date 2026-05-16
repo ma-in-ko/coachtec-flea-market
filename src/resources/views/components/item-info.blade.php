@@ -25,7 +25,6 @@
                 @elseif($item->condition == 4)
                     状態が悪い
                 @endif
-                
             </td>
         </tr>
     </table>

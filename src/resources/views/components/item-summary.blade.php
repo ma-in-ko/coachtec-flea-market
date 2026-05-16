@@ -1,4 +1,4 @@
- <!--  商品概要 -->
+<!--  商品概要 -->
 <article class="item-detail__summary">
     <div class="item-detail__name">
         {{ $item->name }}
@@ -18,7 +18,7 @@
         @endphp
         <div class="item-detail__likes">
             @if($liked)
-                <form action="/item/{{ $item->id }}/like" method="POST">
+                <form action="{{ route('likes.destroy', $item->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="link-btn">
@@ -27,14 +27,14 @@
                 </form>
             @else
 
-                <form action="/item/{{ $item->id }}/like" method="POST">
+                <form action="{{ route('likes.store', $item->id) }}" method="POST">
                     @csrf
                     <button type="submit" class="link-btn">
                         <img class="icon" src="{{ asset('images/heart-default.png') }}" alt="いいね">
                     </button>
                 </form>
             @endif
-
+ 
                 <p  class="item-detail__likes-count">
                     {{ $item->likes_count }}
                 </p>

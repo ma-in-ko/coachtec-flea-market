@@ -68,32 +68,12 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.register');
         });
 
+        //  認証画面
         Fortify::verifyEmailView(function () {
             return view('auth.verify-email');
         });
 
-        //ログインバリデーション
-        /*Fortify::authenticateThrough(function () {
-            return [
-                function ($request, $next) {
-
-                    validator($request->all(), [
-                        'email' => ['required', 'email'],
-                        'password'=> ['required'],
-                    ], [
-                        'email.required' => 'メールアドレスを入力してください',
-                        'email.email' => 'メールアドレスはメール形式で入力してください',
-                        'password.required' => 'パスワードを入力してください',
-                    ])->validate();
-
-                return $next($request);
-                },
-
-                AttemptToAuthenticate::class,
-            ];
-        });*/
-
-        // ログイン試行制限（なし）
+        // ログイン試行制限を無効化
         RateLimiter::for('login', function (Request $request) {
             return Limit::none();
         });
@@ -102,7 +82,7 @@ class FortifyServiceProvider extends ServiceProvider
         config(['fortify.home' => '/']);
 
 
-        //ログアウト後のリダイレクト先
+        // ログアウト後のリダイレクト先
         $this->app->instance(LogoutResponse::class, new CustomLogoutResponse());
     }
 }

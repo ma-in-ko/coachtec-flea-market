@@ -29,7 +29,7 @@ class ExhibitionRequest extends FormRequest
             'image'=> ['required', 'image', 'mimes:jpeg,png'],
             'categories' => ['required', 'array'],
             'categories.*' =>['integer'],
-            'condition' => ['required'],
+            'condition' => ['required', 'integer'],
             'price' => ['required', 'numeric', 'min:0'],
         ];
     }
@@ -39,9 +39,10 @@ class ExhibitionRequest extends FormRequest
             'name.required' => '商品名を入力してください',
             'name.string' => '商品名は文字で入力してください',
             'description.required' => '商品説明を入力してください',
-            'description.string' => '商品説明は文字で250文字以内で入力してください',
+            'description.string' => '商品説明は文字で255文字以内で入力してください',
             'description.max' => '商品説明は文字で250文字以内で入力してください',
             'image.required' => '商品画像を登録してください',
+            'image.image' => '商品画像をアップロードしてください',
             'image.mimes' => '商品画像はjpegまたはpngで保存してください',
             'categories.required' => 'カテゴリーを選択してください',
             'condition.required' => '商品状態を選択してください',

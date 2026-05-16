@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Profile;
-use App\Models\User;
-use App\Models\Item;
 use App\Http\Requests\ProfileRequest;
 
 class MypageController extends Controller
@@ -27,7 +25,7 @@ class MypageController extends Controller
     return view('mypage.index', compact('user', 'profile', 'items', 'page'));
     }
 
-    /*編集・更新*/
+    //編集・更新
     public function edit()
     {
         $user = auth()->user();

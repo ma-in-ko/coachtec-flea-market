@@ -30,154 +30,68 @@
                 <label class="sell-form__label">カテゴリー</label>
 
                 <div class="checkbox__block">
-                    <input
+                    @php
+                    $categories = [
+                        1 => 'ファッション',
+                        2 => '家電',
+                        3 => 'インテリア',
+                        4 => 'レディース',
+                        5 => 'メンズ',
+                        6 => 'コスメ',
+                        7 => '本',
+                        8 => 'ゲーム',
+                        9 => 'スポーツ',
+                        10 => 'キッチン',
+                        11=> 'ハンドメイド',
+                        12 => 'アクセサリー',
+                        13 => 'おもちゃ',
+                        14 => 'ベビー・キッズ',
+                    ];
+                    @endphp
+
+                    @foreach($categories as $id => $category)
+                        <input
                         type="checkbox"
-                        id="cat1"
+                        id="cat{{ $id }}"
                         name="categories[]"
-                        value="1"
-                        {{ in_array(1, old('categories', [])) ? 'checked' : '' }}
+                        value="{{ $id }}"
+                        {{ in_array($id, old('categories', [])) ? 'checked' : '' }}
                         class="sell-form__category-input" >
-                    <label for="cat1" class="category__button">
-                    ファッション
-                    </label>
-                    <input
-                        type="checkbox"
-                        id="cat2"
-                        name="categories[]"
-                        value="2"
-                        {{ in_array(2, old('categories', [])) ? 'checked' : '' }}
-                        class="sell-form__category-input" >
-                    <label for="cat2" class="category__button">
-                    家電
-                    </label>
-                    <input
-                        type="checkbox"
-                        id="cat3"
-                        name="categories[]"
-                        value="3" {{ in_array(3, old('categories', [])) ? 'checked' : '' }}
-                        class="sell-form__category-input" >
-                    <label for="cat3" class="category__button">
-                    インテリア
-                    </label>
-                    <input
-                        type="checkbox"
-                        id="cat4"
-                        name="categories[]"
-                        value="4"
-                        {{ in_array(4, old('categories', [])) ? 'checked' : '' }}
-                        class="sell-form__category-input" >
-                    <label for="cat4" class="category__button">
-                    レディース
-                    </label>
-                    <input
-                        type="checkbox"
-                        id="cat5"
-                        name="categories[]"
-                        value="5" {{ in_array(5, old('categories', [])) ? 'checked' : '' }}
-                        class="sell-form__category-input" >
-                    <label for="cat5" class="category__button">
-                    メンズ
-                    </label>
-                    <input
-                        type="checkbox"
-                        id="cat6"
-                        name="categories[]"
-                        value="6" {{ in_array(6, old('categories', [])) ? 'checked' : '' }}
-                        class="sell-form__category-input" >
-                    <label for="cat6" class="category__button">
-                    コスメ
-                    </label>
-                    <input
-                        type="checkbox"
-                        id="cat7"
-                        name="categories[]"
-                        value="7" {{ in_array(7, old('categories', [])) ? 'checked' : '' }}
-                        class="sell-form__category-input" >
-                    <label for="cat7" class="category__button">
-                    本
-                    </label>
-                    <input
-                        type="checkbox"
-                        id="cat8"
-                        name="categories[]"
-                        value="8"
-                        {{ in_array(8, old('categories', [])) ? 'checked' : '' }}
-                        class="sell-form__category-input" >
-                    <label for="cat8" class="category__button">
-                    ゲーム
-                    </label>
-                    <input
-                        type="checkbox"
-                        id="cat9"
-                        name="categories[]"
-                        value="9"
-                        {{ in_array(9, old('categories', [])) ? 'checked' : '' }}
-                        class="sell-form__category-input" >
-                    <label for="cat9" class="category__button">
-                スポーツ
-                    </label>
-                    <input 
-                        type="checkbox"
-                        id="cat10"
-                        name="categories[]"
-                        value="10" {{ in_array(10, old('categories', [])) ? 'checked' : '' }}
-                        class="sell-form__category-input" >
-                    <label for="cat10" class="category__button">
-                キッチン
-                    </label>
-                    <input
-                        type="checkbox"
-                        id="cat11" 
-                        name="categories[]"
-                        value="11"
-                        {{ in_array(11, old('categories', [])) ? 'checked' : '' }}
-                        class="sell-form__category-input" >
-                    <label for="cat11" class="category__button">
-                ハンドメイド
-                    </label>
-                    <input 
-                        type="checkbox"
-                        id="cat12"
-                        name="categories[]" value="12"
-                        {{ in_array(12, old('categories', [])) ? 'checked' : '' }}
-                        class="sell-form__category-input" >
-                    <label for="cat12" class="category__button">
-                アクセサリー
-                    </label>
-                    <input type="checkbox" id="cat13" name="categories[]" value="13" {{ in_array(13, old('categories', [])) ? 'checked' : '' }} class="sell-form__category-input" >
-                    <label for="cat13" class="category__button">
-                    おもちゃ
-                    </label>
-                    <input
-                        type="checkbox"
-                        id="cat14"
-                        name="categories[]"
-                        value="14" {{ in_array(14, old('categories', [])) ? 'checked' : '' }}
-                        class="sell-form__category-input" >
-                    <label for="cat14" class="category__button">
-                    ベビー・キッズ
-                    </label>
+
+                        <label for="cat{{ $id }}" class="category__button">
+                            {{ $category }}
+                        </label>
+                    @endforeach
+
 
                     <x-error field="categories" />
 
                 </div>
             </div>
 
+            @php
+                $conditions =[
+                1 => '良好',
+                2 => '目立った傷や汚れなし',
+                3 => 'やや傷や汚れあり',
+                4 => '状態が悪い',
+                ];
+            @endphp
+
             <div class="sell-form__group">
                 <label class="sell-form__label">商品の状態</label>
                     <select name="condition" class="sell-form__select">
                         <option value="" disabled selected>選択してください</option>
-                        <option value="1" {{ old('condition') == '1' ? 'selected' : '' }}>良好</option>
-                        <option value="2" {{ old('condition') == '2' ? 'selected' : '' }}>目立った傷や汚れなし</option>
-                        <option value="3" {{ old('condition') == '3' ? 'selected' : '' }}>やや傷や汚れあり</option>
-                        <option value="4" {{ old('condition') == '4' ? 'selected' : '' }}>状態が悪い</option>
+                        @foreach($conditions as $value => $condition)
+                            <option value="{{ $value }}" {{ old('condition') == $value ? 'selected' : '' }}>{{ $condition }}</option>
+                        @endforeach
                     </select>
 
                     <x-error field="condition" />
             </div>
 
             <!-- 商品名と説明 -->
-             <h3>商品名と説明</h3>
+            <h3>商品名と説明</h3>
             <div class="sell-form__group">
                 <label class="sell-form__label">商品名</label>
                 <input type="text" name="name" class="sell-form__input" value="{{ old('name') }}">

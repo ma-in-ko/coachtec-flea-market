@@ -19,7 +19,7 @@
 
     <div class="comments__form">
         <div class="comments__form-title">商品へのコメント</div>
-            <form class="comments__form-text" action="/item/{{ $item->id }}/comment" method="POST">
+            <form class="comments__form-text" action="{{ route('comments.store', $item->id) }}" method="POST">
                 @csrf
                 <textarea name="comment" rows="5">{{ old('comment') }}</textarea>
 

@@ -16,7 +16,7 @@
 
             <div class="header__logo-wrapper">
                 <div class="header__logo">
-                    <a href="/">
+                    <a href="{{ route('items.index') }}">
                         <img src="{{ asset('images/COACHTECH-header_logo.png') }}" alt="logo">
                     </a>
                 </div>
@@ -59,7 +59,7 @@
                         @endauth
 
                         <li><a href="{{ route('mypage') }}">マイページ</a></li>
-                        <li><a href="{{ route('sell.store') }}">出品</a></li>
+                        <li><a href="{{ route('sell.create') }}">出品</a></li>
                     </ul>
                 </nav>
             </div>
