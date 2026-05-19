@@ -61,16 +61,42 @@ php artisan storage:link
 # 画像表示用のシンボリックリンクを作成
 ```
 
-### データベース
+```
+env
+DB_CONECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=laravel_db
+DB_USERNAME=laravel_user
+DB_PASSWORD=laralve_pass
+
+MAIL_MAILER=smtp
+MAIL_HOST=mailhog
+MAIL_PORT=1025
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS=test@example.com
+MAIL_FROM_NAME="${APP_NAME}"
+
+STRIPE_KEY=公開鍵
+STRIPE‗SECRET＝シークレットキー
+```
+
+# データベース
 ```
 php artisan migrate --seed  
 ```
 
 ## テストアカウント
 
-### 一般ユーザー
+### 一般ユーザー1
 
-email:test@example.com
+email: test@email.com
+password: password
+
+### 一般ユーザー2
+email: sample@email.com
 password: password
 
 ## 認証機能
@@ -110,16 +136,16 @@ cvc：任意の3桁
 
 ## 環境開発URL  
  http://localhost  
-*phpMyAdmin  
+ phpMyAdmin  
  http://localhost:8080  
 
 ## ER図  
 ![ER図](docs/er.png)
 
 ## 工夫した点
-* 画像表示をURL / storage　両対応に実装
+* 画像表示をstorageパス・外部URLの両方に対応
 * 未ログインユーザーは閲覧のみ可能、操作は制限する設計
-* マイページのタブ切替をURLパラメータっで管理し、リロード時も状態を保持
+* マイページのタブ切替をURLパラメータで管理し、リロード時も状態を保持
 * 商品一覧ではルートごとに表示を分け、シンプルな構成に
 * UI統一感を意識し、商品画像サイズを調整
 
