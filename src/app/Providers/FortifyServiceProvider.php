@@ -79,7 +79,7 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         // ログイン後のリダイレクト先
-        config(['fortify.home' => '/']);
+        config(['fortify.home' => '/mypage/profile']);
 
 
         // ログアウト後のリダイレクト先
