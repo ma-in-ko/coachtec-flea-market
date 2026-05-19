@@ -58,7 +58,7 @@ composer install
 cp .env.example .env  
 php artisan key:generate
 php artisan storage:link
-# 画像表示用のシンボリックリンクを作成
+画像表示用のシンボリックリンクを作成
 ```
 
 ```.env
