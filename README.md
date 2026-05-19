@@ -61,14 +61,13 @@ php artisan storage:link
 # 画像表示用のシンボリックリンクを作成
 ```
 
-```
-env
-DB_CONECTION=mysql
+```.env
+DB_CONNECTION=mysql
 DB_HOST=mysql
 DB_PORT=3306
 DB_DATABASE=laravel_db
 DB_USERNAME=laravel_user
-DB_PASSWORD=laralve_pass
+DB_PASSWORD=laravel_pass
 
 MAIL_MAILER=smtp
 MAIL_HOST=mailhog
@@ -80,7 +79,7 @@ MAIL_FROM_ADDRESS=test@example.com
 MAIL_FROM_NAME="${APP_NAME}"
 
 STRIPE_KEY=公開鍵
-STRIPE‗SECRET＝シークレットキー
+STRIPE_SECRET＝シークレットキー
 ```
 
 # データベース
@@ -92,11 +91,11 @@ php artisan migrate --seed
 
 ### 一般ユーザー1
 
-email: test@email.com
+email: test@email.com  
 password: password
 
 ### 一般ユーザー2
-email: sample@email.com
+email: sample@email.com  
 password: password
 
 ## 認証機能
@@ -141,6 +140,13 @@ cvc：任意の3桁
 
 ## ER図  
 ![ER図](docs/er.png)
+
+## テスト
+### 単体テスト実行
+
+```bash
+php artisan test
+```
 
 ## 工夫した点
 * 画像表示をstorageパス・外部URLの両方に対応
