@@ -60,8 +60,9 @@ php artisan key:generate
 php artisan storage:link
 ```
 
-画像表示用のシンボリックリンクを作成します
+画像表示用のシンボリックリンクを作成します。
 
+.envファイルに以下を設定してください。
 
 ```.env
 DB_CONNECTION=mysql
