@@ -52,13 +52,11 @@ docker compose up -d --build
 ```
 
 ### Laravelセットアップ
-```
+```bash
 docker compose exec php bash  
 composer install  
 cp .env.example .env  
 php artisan key:generate
-
-```bash
 php artisan storage:link
 ```
 
