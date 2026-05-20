@@ -57,9 +57,13 @@ docker compose exec php bash
 composer install  
 cp .env.example .env  
 php artisan key:generate
+
+```bash
 php artisan storage:link
-画像表示用のシンボリックリンクを作成
 ```
+
+画像表示用のシンボリックリンクを作成します
+
 
 ```.env
 DB_CONNECTION=mysql
@@ -79,10 +83,10 @@ MAIL_FROM_ADDRESS=test@example.com
 MAIL_FROM_NAME="${APP_NAME}"
 
 STRIPE_KEY=公開鍵
-STRIPE_SECRET＝シークレットキー
+STRIPE_SECRET=シークレットキー
 ```
 
-# データベース
+## マイグレーション
 ```
 php artisan migrate --seed  
 ```
@@ -133,10 +137,9 @@ Stripeのテストモードを使用しています。
 有効期限：任意の未来日
 cvc：任意の3桁
 
-## 環境開発URL  
- http://localhost  
- phpMyAdmin  
- http://localhost:8080  
+## 開発環境URL  
+- アプリ: http://localhost  
+- phpMyAdmin: http://localhost:8080  
 
 ## ER図  
 ![ER図](docs/er.png)
@@ -156,4 +159,5 @@ php artisan test
 * UI統一感を意識し、商品画像サイズを調整
 
 ## 作成者
+中尾　麻衣子
 
